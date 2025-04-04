@@ -18,9 +18,6 @@ def create_order(
     order.save()
     tickets_objects = []
     for ticket in tickets:
-        Ticket.objects.filter(movie_session_id=ticket["movie_session"],
-                              row=ticket["row"],
-                              seat=ticket["seat"]).exists()
         ticket_instance = Ticket(order=order,
                                  row=ticket["row"],
                                  seat=ticket["seat"],
