@@ -109,16 +109,6 @@ class Ticket(models.Model):
             })
 
     def save(self, *args, **kwargs) -> None:
-        if Ticket.objects.filter(
-                movie_session=self.movie_session,
-                row=self.row,
-                seat=self.seat
-        ).exists():
-            raise ValidationError(
-                "Ticket with this row, "
-                "seat and movie session already exists"
-            )
-
         self.full_clean()
         return super().save(*args, **kwargs)
 
